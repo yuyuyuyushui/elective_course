@@ -1,14 +1,20 @@
 from core import obj
-
+def obj_load():
+    pass
 def create_course(name,time,price):
     couse_obj = obj.Course(name, time, price)
-    print(couse_obj.name)
+    couse_obj.save_obj()
 def create_classes():
     pass
+def create_teacher():
+    pass
 def manage_role():
-    name, time, price =input("请输入课程名，周期，价格").strip().split(',')
+    school1 = obj.School('上海', '老男孩').save_obj()
+    school2 = obj.School('北京', '老男孩').save_obj()
+    name, time, price =input("请输入课程名，周期，价格>>").strip().split(',')
     print(name,time,price)
     create_course(name, time, price)
+
 
 def teacher_role():
     pass
