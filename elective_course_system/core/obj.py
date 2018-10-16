@@ -17,11 +17,7 @@ class Save:
             dir_path = '%s\%s'%(dir_path,self.uuid)
             with open(dir_path, 'wb') as f:
                 pickle.dump(self, f)
-    def load_obj(self,):
-        dir_path = '%s\db\%s\%s' % (dir, self.path, self.uuid)
-        with open(dir_path,'rb') as f:
-            date = pickle.load(f)
-        return date
+
 class School(Save):
     def __init__(self,addree, name):
         self.path = 'school'
