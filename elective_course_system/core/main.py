@@ -8,27 +8,21 @@ class Load_object:
         with open(dir_path,'rb') as f:
             date = pickle.load(f)
         return date
+
 class Manage_role(Load_object):  #  管理对象
     def __init__(self):
         self.school_uuid = {}
         self.dir_path = settings.DIR_PATH
-        self.school_objs = self.initialize()
-        self.test()
-    def test(self):
-        print(self.school_objs[0].name)
-        input("请输入你想关联的学校")
+        self.initialize()
     def initialize(self):
         dir_path = '%s\db\school' % self.dir_path
         print(dir_path)
         print(os.path.exists(dir_path)) #E:\py_study\elective_course\elective_course_system\db\school
         if os.path.exists(dir_path): # E:\py_study\elective_course\elective_course_system\school
-
-            school_obj = []
-            for i in self.school_uuid:
-                dir_path = '%s\%s' % (dir_path,i)
-                obj_school = self.load_obj('school',i)
-                school_obj.append(obj_school)
-            return school_obj
+            obj_schooles = obj.School.get_all('school')
+            for i in obj_schooles:
+                print(i)
+            return obj_schooles
         else:
             school_body = [("上海", '老男孩'),('北京', '老男孩')]
             return self.instantiation(school_body)
@@ -38,11 +32,6 @@ class Manage_role(Load_object):  #  管理对象
             school_obj = obj.School(school_body[0], school_body[1])
             school_objs.append(school_obj)
             school_obj.save_obj()
-            self.school_uuid[school_body[0]] = school_obj.uuid
-        print(self.school_uuid)
-        dir_uerpath = r"%s\userdb\userdate"%settings.DIR_PATH
-        with open(dir_uerpath,'wb',encoding='utf-8') as f:
-            f.write(pickle.dumps(self.school_uuid))
         return school_objs
 def Teacher_role():
     pass

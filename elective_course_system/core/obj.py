@@ -17,7 +17,17 @@ class Save:
             dir_path = '%s\%s'%(dir_path,self.uuid)
             with open(dir_path, 'wb') as f:
                 pickle.dump(self, f)
-
+    @staticmethod
+    def get_all(type):
+        obj_list = []
+        dir_path = r"%s\db\%s"%(settings.DIR_PATH, type)
+        for i in os.listdir(dir_path):
+            dir_paths = "%s\%s"%(dir_path, i)
+            with open(dir_paths, 'rb') as f:
+                obj_list.append(pickle.load(f))
+        return obj_list
+    def __str__(self):
+        return self.addree
 class School(Save):
     def __init__(self,addree, name):
         self.path = 'school'
