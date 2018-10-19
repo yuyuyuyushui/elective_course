@@ -51,7 +51,7 @@ class Manage_role():  #  管理对象
             view_index = input('请输入你想执行的操作>>')
             if view_index == 'b':
                 flag = True
-            elif view_index.isdigit() and int(view_index)>=0 and int(view_index)<len(self.route)
+            elif view_index.isdigit() and int(view_index)>=0 and int(view_index)<len(self.route):
                 self.route[int(view_index)][1](schoolObeject)
 
     def create_course(self,schoolObeject):
