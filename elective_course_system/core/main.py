@@ -2,27 +2,31 @@ import os, sys, pickle,json
 
 from conf import settings
 from core import obj
-class Load_object:
-    def load_obj(self,type, uuid):
-        dir_path = '%s\db\%s\%s' % (self.dir_path, type, uuid)
-        with open(dir_path,'rb') as f:
-            date = pickle.load(f)
-        return date
 
-class Manage_role(Load_object):  #  管理对象
+
+
+class Manage_role():  #  管理对象
     def __init__(self):
+        self.route = [('创建课程', self.create_course),
+                      ('创建班级', self.create_classes),
+                      ("查询讲师", self.query_teacher),
+                      ('查询班级', self.query_classes),
+                      ("查询课程", self.query_course)]
         self.school_uuid = {}
         self.dir_path = settings.DIR_PATH
         self.initialize()
+
+        # self.run(self.schoolObjList)
+
+
     def initialize(self):
         dir_path = '%s\db\school' % self.dir_path
-        print(dir_path)
-        print(os.path.exists(dir_path)) #E:\py_study\elective_course\elective_course_system\db\school
+        # print(dir_path)
+        # print(os.path.exists(dir_path)) #E:\py_study\elective_course\elective_course_system\db\school
         if os.path.exists(dir_path): # E:\py_study\elective_course\elective_course_system\school
             obj_schooles = obj.School.get_all('school')
-            for i in obj_schooles:
-                print(i)
-            return obj_schooles
+
+            self.run(obj_schooles)
         else:
             school_body = [("上海", '老男孩'),('北京', '老男孩')]
             return self.instantiation(school_body)
@@ -33,6 +37,37 @@ class Manage_role(Load_object):  #  管理对象
             school_objs.append(school_obj)
             school_obj.save_obj()
         return school_objs
+
+    def run(self, schoolObejects):
+        for index, value in enumerate(schoolObejects):
+            print(index, value.addree)
+        schoolNum = input("请输入你选择的学校>>")
+        schoolObeject = schoolObejects[int(schoolNum)]
+        print(hasattr(Manage_role, 'route'))
+        flag = False
+        while not flag:
+            for inx, view in enumerate(self.route):
+                print(inx, view[0])
+            view_index = input('请输入你想执行的操作>>')
+            if view_index == 'b':
+                flag = True
+            elif view_index.isdigit() and int(view_index)>=0 and int(view_index)<len(self.route)
+                self.route[int(view_index)][1](schoolObeject)
+
+    def create_course(self,schoolObeject):
+        course,price,cycle = input('请输入创建的课程名，价格，周期》》').strip().split(',')
+        schoolObeject.create_course(course,price,cycle)
+        print(schoolObeject.course)
+
+    def create_classes(self):
+        obj.Teacher().get_all('teacher')
+
+    def query_teacher(self):
+        pass
+    def query_classes(self):
+        pass
+    def query_course(self):
+        pass
 def Teacher_role():
     pass
 def Student_role():
