@@ -1,5 +1,6 @@
 import pickle, uuid, os
 from conf import settings
+from core import modle
 def uuids():
     return uuid.uuid4()
 class Save:
@@ -37,7 +38,7 @@ class School(Save):
         self.name = name
         self.course = []  # 学校创建课程
         self.classes = []  # 学校创建班级
-        self.uuid = uuids()
+        self.uuid = modle.Nid
 
     def create_course(self, courseName, courseCycle, coursePrice ):
         courese_obj = Course(courseName, courseCycle, coursePrice)
