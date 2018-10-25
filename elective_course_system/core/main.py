@@ -3,8 +3,6 @@ import os, sys, pickle,json
 from conf import settings
 from core import obj
 
-
-
 class Manage_role():  #  管理对象
     def __init__(self):
         self.route = [('创建课程', self.create_course),
@@ -60,8 +58,8 @@ class Manage_role():  #  管理对象
         print(schoolObeject.course)
 
     def create_classes(self):
-        obj.Teacher().get_all('teacher')
-
+        # obj.Teacher().get_all('teacher')
+        pass
     def query_teacher(self):
         pass
     def query_classes(self):

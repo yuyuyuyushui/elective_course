@@ -1,5 +1,6 @@
 import pickle, uuid, os
 from conf import settings
+from core import modle
 def uuids():
     return uuid.uuid4()
 class Save:
@@ -12,14 +13,13 @@ class Save:
                 pickle.dump(self, f)
         else:
             os.mkdir(dir_path)
-            dir_path = '%s\%s'%(dir_path,self.uuid)
+            dir_path = '%s\%s'%(dir_path, self.uuid)
             with open(dir_path, 'wb') as f:
                 pickle.dump(self, f)
     @staticmethod
     def get_all(type):
         obj_list = []
         dir_path = r"%s\db\%s"%(settings.DIR_PATH, type)
-
         if os.path.exists(dir_path):
             for i in os.listdir(dir_path):
                 dir_paths = "%s\%s"%(dir_path, i)
@@ -32,12 +32,12 @@ class Save:
         return self.name
 class School(Save):
     def __init__(self,addree, name):
-        self.path = 'school'
+        self.path = modle.SchoolNid.path
         self.addree = addree
         self.name = name
         self.course = []  # 学校创建课程
         self.classes = []  # 学校创建班级
-        self.uuid = uuids()
+        self.uuid = modle.SchoolNid()
 
     def create_course(self, courseName, courseCycle, coursePrice ):
         courese_obj = Course(courseName, courseCycle, coursePrice)
