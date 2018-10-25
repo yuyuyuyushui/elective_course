@@ -13,7 +13,7 @@ class Manage_role():  #  管理对象
         self.school_uuid = {}
         self.dir_path = settings.DIR_PATH
         self.initialize()
-
+        self.run()
         # self.run(self.schoolObjList)
 
 
@@ -23,8 +23,8 @@ class Manage_role():  #  管理对象
         # print(os.path.exists(dir_path)) #E:\py_study\elective_course\elective_course_system\db\school
         if os.path.exists(dir_path): # E:\py_study\elective_course\elective_course_system\school
             obj_schooles = obj.School.get_all('school')
+            self.run()
 
-            self.run(obj_schooles)
         else:
             school_body = [("上海", '老男孩'),('北京', '老男孩')]
             return self.instantiation(school_body)
@@ -36,7 +36,8 @@ class Manage_role():  #  管理对象
             school_obj.save_obj()
         return school_objs
 
-    def run(self, schoolObejects):
+    def run(self):
+        schoolObejects = obj.School.get_all('school')
         for index, value in enumerate(schoolObejects):
             print(index, value.addree)
         schoolNum = input("请输入你选择的学校>>")

@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/elective_course_system" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.6.1 (C:\Program Files (x86)\python\python.exe)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.6 (venv)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="选课系统Demo" />
   </component>
